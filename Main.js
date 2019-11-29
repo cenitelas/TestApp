@@ -1,25 +1,10 @@
 import React from 'react';
 import {StyleSheet,View,ScrollView} from 'react-native';
 import PhotoMini from './PhotoMini';
-import PhotoFull from './PhotoFull';
 
 class Main extends React.Component{
-    constructor(props){
-            super(props);
-            this.state={
-                showPhoto:null
-            }
-    }
     componentDidMount(){
         this.props.getPhotos();
-    }
-
-    onShowPhoto = (photo)=>{
-        this.setState({showPhoto:photo});
-    }
-
-    onHidePhoto = ()=>{
-        this.setState({showPhoto:null});
     }
 
     render(){
@@ -27,12 +12,12 @@ class Main extends React.Component{
 
             <ScrollView>
                 <View style={styles.listItem}>
-                    {this.state.showPhoto
-                    ?
-                        <PhotoFull photo={this.state.showPhoto} hide={this.onHidePhoto}></PhotoFull>
-                    :
-                        this.props.photos && this.props.photos.map((item,i)=>
-                            <PhotoMini photo={item} key={i} show={this.onShowPhoto}/>
+                    {this.props.photos && this.props.photos.map((item,i)=>
+                            <PhotoMini photo={item} key={i} click={() => {
+                this.props.navigation.navigate('Details', {
+                item: item
+              });
+            }}/>
                     )}            
                 </View>
             </ScrollView>
@@ -46,9 +31,9 @@ export default Main;
 var styles = StyleSheet.create({
     listItem: {
       flex: 1,
-      flexDirection:'row',
-      flexWrap:'wrap',
-      justifyContent:'flex-start',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignContent: 'stretch',
       backgroundColor:'#424240'
     }
   });
