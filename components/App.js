@@ -1,5 +1,5 @@
 import React from 'react';
-import createStore from './stores/store';
+import createStore from '../stores/store';
 import {Provider} from 'react-redux';
 import Main from './MainContainer';
 import PhotoFull from './PhotoFull';

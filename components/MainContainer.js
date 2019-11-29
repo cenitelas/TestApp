@@ -1,5 +1,5 @@
  import {connect} from "react-redux";
- import {getPhotos} from './actions/action';
+ import {getPhotos} from '../actions/action';
  import Main from "./Main";
 
  const mapDispatchToProps = (dispatch) => ({
